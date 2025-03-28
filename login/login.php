@@ -16,9 +16,8 @@ if ($accountMode === "login") {
         session_start();
         $_SESSION['username'] = $username;
     } else {
-        echo "kill yourself";
+        header("Location: ./index.php?auth=false");
     }
 }
 ?>
-
 <a href="./index.php">go back</a>

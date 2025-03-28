@@ -2,6 +2,9 @@
 session_start();
 
 $loggedIn = $_SESSION["username"];
+$auth = filter_input(INPUT_GET, 'auth', FILTER_SANITIZE_SPECIAL_CHARS);
+
+echo $auth;
 
 if ($loggedIn) {
     echo "cool beans";
@@ -22,6 +25,10 @@ if ($loggedIn) {
 <body>
     <div id="form">
         <h1 id="heading">log in</h1>
+        <?php if ($auth === 'false') {
+            echo "<span>* log-in failed. account details are incorrect</span>";
+        }
+        ?>
         <form action="login.php" method="post">
             <section id="account-btns">
                 <div id="login-btn" class="active">
